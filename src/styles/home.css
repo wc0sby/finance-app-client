@@ -1,0 +1,37 @@
+.main-home {
+  flex-grow: 1;
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  position: relative;
+
+}
+
+.left-home {
+  align-self: center;
+  flex-grow: 1;
+  padding-bottom: 100px;
+}
+
+
+.right-home {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+}
+
+.right-home .img-wrapper {
+  background-image: url('../hugo-payment-processed.png');
+  flex-grow: 1;
+  max-height: 70vh;
+  min-width: 40vw;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: relative;
+}
+
+.desc-home {
+  padding-right: 5em;
+}
+
