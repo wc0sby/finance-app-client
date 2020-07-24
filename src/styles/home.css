@@ -18,6 +18,8 @@
   display: flex;
   flex-grow: 1;
   flex-direction: column;
+  opacity: 1;
+  transition: ease-in-out all .5s;
 }
 
 .right-home .img-wrapper {
@@ -29,9 +31,21 @@
   background-repeat: no-repeat;
   background-position: center;
   position: relative;
+  visibility: visible;
 }
 
 .desc-home {
   padding-right: 5em;
 }
 
+@media (max-width: 1000px){
+  .right-home  {
+    opacity: 0;
+    width: 0;
+    height: 0;
+    
+  }
+  .left-home .heading-text {
+    font-size: 1.75em;
+  }
+}

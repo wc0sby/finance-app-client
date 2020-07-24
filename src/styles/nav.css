@@ -11,11 +11,29 @@ header {
   align-items: center;
 }
 
+.nav-logo-img{
+  background-image: url('../Logo.svg');
+  flex-grow: 1;
+  min-height: 80px;
+  min-width: 80px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: relative;
+  transition: ease-in-out all .3s;
+}
+
 .nav-logo-text {
   color: rgba(255, 173, 51, 0.76);
   font-size: 1.5em;
   font-weight: 600;
   margin-left: 1rem;
+  transition: ease-in-out all .2s;
+}
+
+.nav-main {
+  display: flex;
+  align-items:  center;
 }
 
 .nav-links {
@@ -44,4 +62,51 @@ header {
 
 #nav-link-2:hover {
   color: #d88b17
+}
+
+.burger {
+  /* width: %; */
+  cursor: pointer;
+  opacity: 0;
+  overflow: hidden;
+  transition: all .3s ease-in-out;
+}
+
+.burger > div {
+  width: 30px;
+  background-color: black;
+  height: 10%;
+  margin-top: 5px;
+}
+
+@media (max-width:1000px) {
+  .burger {
+    opacity: 1;
+    height: 30px;
+  }
+
+
+  .nav-links {
+    position: absolute;
+    right: -35%;
+    top: 10%;
+    height: 50%;
+    flex-direction: column;
+    /* justify-content: space-around; */
+  }
+
+  .nav-links li {
+    margin: 50% 0;
+  }
+}
+
+@media (max-width:600px) {
+  .nav-logo-text{
+    font-size: 1em;
+  }
+
+  .nav-logo-img {
+    min-height: 50px;
+    min-width: 50px;
+  }
 }
