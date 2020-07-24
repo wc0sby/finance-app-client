@@ -3,12 +3,14 @@ import './App.css';
 
 import Nav from './components/nav'
 import Home from './components/home'
+import Auth from './components/auth'
 
 function App() {
   return (
     <div className={classNames}>
       <Nav/>
-      <Home/>
+      {/* <Home/> */}
+      <Auth/>
     </div>
   );
 }

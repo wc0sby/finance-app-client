@@ -30,8 +30,16 @@ body {
   color: #FFAC33;
 }
 
+.orange-background {
+  background-color: rgba(218, 150, 50, .49);
+}
+
 .green-text {
   color: #5CAF61
+}
+
+.green-background {
+ background-color: rgba(92, 175, 97, 1);
 }
 
 .accent-text {
