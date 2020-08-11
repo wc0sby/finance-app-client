@@ -19,7 +19,7 @@ export default class SignIn extends Component{
               <div className="form-button green-background">Login</div>
               <div>
                 <label className="green-text form-label" htmlFor="Register">Don't have an account?</label>
-                <div className="form-button orange-background">Register</div>
+                <div className="form-button orange-background" onClick={()=>this.props.regClick()}>Register</div>
               </div>
             </div>
           </form>

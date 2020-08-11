@@ -6,17 +6,29 @@ import logo from '../Balanced.png'
 import Circle from './circle'
 
 export default class Home extends Component{
+  state = {
+    signIn: true
+  }
+
+  whichUserForm = () => {
+    return this.state.signIn ? <SignIn regClick={()=>this.goToNewUserForm()}/> : <SignUp/>
+  }
+
+  goToNewUserForm = () => {
+    const {signIn} = this.state
+    this.setState({signIn:!signIn})
+  }
+
   render(){
     return(
       <div className='main-home'>
         <section className='left-home'>
           <div className='form-container'>
-            {/* <SignIn/> */}
-            <SignUp/>
+            {this.whichUserForm()}
           </div>
         </section>
         <section className='right-home' style={styles.imgPosition}>
-          <h1 style={styles.headerPosition}>Let's get Balanced.</h1>
+          <h1 style={styles.headerPosition}>Let's Get Balanced.</h1>
           <div style={styles.imgWrapper}></div>
           <Circle
             size={100}
@@ -31,7 +43,7 @@ export default class Home extends Component{
             color={styles.bubbleColor}
             top={false}
             left={false}
-            vPosition={225}
+            vPosition={'35%'}
             hPosition={0}
           />
           <Circle
@@ -39,7 +51,7 @@ export default class Home extends Component{
             color={styles.bubbleColor}
             top={false}
             left={false}
-            vPosition={150}
+            vPosition={'25%'}
             hPosition={0}
           />
           <Circle
@@ -47,7 +59,7 @@ export default class Home extends Component{
             color={styles.bubbleColor}
             top={false}
             left={false}
-            vPosition={175}
+            vPosition={'26%'}
             hPosition={75}
           />
           <Circle
@@ -55,7 +67,7 @@ export default class Home extends Component{
             color={styles.bubbleColor}
             top={false}
             left={false}
-            vPosition={160}
+            vPosition={'22%'}
             hPosition={150}
           />
           <Circle
@@ -63,7 +75,7 @@ export default class Home extends Component{
             color={styles.bubbleColor}
             top={false}
             left={false}
-            vPosition={175}
+            vPosition={'24%'}
             hPosition={225}
           />
           <Circle
@@ -71,7 +83,7 @@ export default class Home extends Component{
             color={styles.bubbleColor}
             top={false}
             left={false}
-            vPosition={130}
+            vPosition={'20%'}
             hPosition={300}
           />
         </section>
