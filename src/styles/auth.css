@@ -37,7 +37,6 @@
 .form-field {
   width: 20rem;
   margin: 1em 0;
-
 }
 
 .auth-form div input {
@@ -47,7 +46,7 @@
 }
 
 .form-button-container{
-  margin-top: 4em;
+  margin-top: 2em;
 }
 
 .form-button-container .form-button {

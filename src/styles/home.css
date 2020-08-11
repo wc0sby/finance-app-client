@@ -20,9 +20,11 @@
   flex-direction: column;
   opacity: 1;
   transition: ease-in-out all .5s;
+  max-height: 70vh;
+  min-width: 40vw;
 }
 
-.right-home .img-wrapper {
+/* .right-home .img-wrapper {
   background-image: url('../hugo-payment-processed.png');
   flex-grow: 1;
   max-height: 70vh;
@@ -32,7 +34,7 @@
   background-position: center;
   position: relative;
   visibility: visible;
-}
+} */
 
 .desc-home {
   padding-right: 5em;
