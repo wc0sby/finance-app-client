@@ -2,7 +2,24 @@ import React, { Component } from 'react'
 import {Link} from 'react-router-dom'
 
 export default class SignIn extends Component{
+  constructor(props){
+    super(props);
+    this.state = {
+      form:{
+        email:'',
+        password:'',
+      }
+    }
+  }
+
+  formUpdate(e, Name){
+    const signUpData = {...this.state.form}
+    signUpData[Name] = e.target.value
+    this.setState({form: signUpData})
+  }
+
   render(){
+    const { email, password } = this.state.form
     return(
       <div className="auth-form">
         <h1 className="accent-text orange-text">Sign In</h1>
@@ -10,11 +27,11 @@ export default class SignIn extends Component{
           <form action="submit">
             <div className="form-field">
               <label className="green-text form-label" htmlFor="user">Email:</label>
-              <input type="text"/>
+              <input type="text" value={email} onChange={(e)=>this.formUpdate(e, 'email')}/>
             </div>
             <div className="form-field">
               <label className="green-text form-label" htmlFor="password">Password:</label>
-              <input type="password"/>
+              <input type="password" value={password} onChange={(e)=>this.formUpdate(e, 'password')}/>
             </div>
             <div className="form-button-container">
               <div className="form-button green-background">Login</div>
