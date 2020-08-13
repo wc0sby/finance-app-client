@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
+import {Link} from 'react-router-dom'
 
-export default class SignIn extends Component{
+export default class SignUp extends Component{
   render(){
     return(
       <div className="auth-form">
@@ -30,9 +31,9 @@ export default class SignIn extends Component{
               <input type="password"/>
             </div>
             <div className="form-button-container">
-              {/* <div> */}
+              <Link to='/register'>
                 <div className="form-button orange-background">Register</div>
-              {/* </div> */}
+              </Link>
             </div>
           </form>
         </div>

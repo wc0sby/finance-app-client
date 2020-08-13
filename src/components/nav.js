@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 import Hamburger from './hamburger'
+import {Link, withRouter} from 'react-router-dom'
 import '../styles/nav.css'
 
-export default class Nav extends Component{
+class Nav extends Component{
   render(){
+    const { pathname } = this.props.location
     return(
       <header>
         <div className='nav-logo'>
@@ -16,10 +18,15 @@ export default class Nav extends Component{
           <Hamburger/>
           <ul className='nav-links'>
             <li>
-              <a id='nav-link-1' href='/home'>Learn More</a>
+              <Link id='nav-link-1' to='/'>Learn More</Link>
             </li>
             <li>
-              <a id='nav-link-2' className=' nav-link-2 orange-text' href='/home'>Sign In</a>
+              <Link 
+                id='nav-link-2' 
+                className=' nav-link-2 orange-text'  
+                to={pathname==='/signin'?'/register':'/signin'}>
+                  {pathname==='/signin'?'SignUp':'SignIn'}
+              </Link>
             </li>
           </ul>
         </nav>
@@ -28,3 +35,5 @@ export default class Nav extends Component{
   }
 }
 
+const NavWrappedWithRouter = withRouter(Nav)
+export default NavWrappedWithRouter

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import {Link} from 'react-router-dom'
 
 export default class SignIn extends Component{
   render(){
@@ -19,7 +20,12 @@ export default class SignIn extends Component{
               <div className="form-button green-background">Login</div>
               <div>
                 <label className="green-text form-label" htmlFor="Register">Don't have an account?</label>
-                <div className="form-button orange-background" onClick={()=>this.props.regClick()}>Register</div>
+                {/* <div> */}
+                  <Link to='/register'>
+                    <div className="form-button orange-background">Register</div>
+                  </Link>
+                {/* </div> */}
+                {/* <div className="form-button orange-background" onClick={()=>this.props.regClick()}>Register</div> */}
               </div>
             </div>
           </form>

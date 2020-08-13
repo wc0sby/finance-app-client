@@ -13,6 +13,10 @@ body {
   font-size: 1.2em;
 }
 
+a {
+  text-decoration: none;
+}
+
 .app-body {
   max-width: 1400px;
   margin: 0 auto;

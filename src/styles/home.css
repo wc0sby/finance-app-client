@@ -24,7 +24,7 @@
   min-width: 40vw;
 }
 
-/* .right-home .img-wrapper {
+.right-home .img-wrapper {
   background-image: url('../hugo-payment-processed.png');
   flex-grow: 1;
   max-height: 70vh;
@@ -34,7 +34,7 @@
   background-position: center;
   position: relative;
   visibility: visible;
-} */
+}
 
 .desc-home {
   padding-right: 5em;
@@ -45,8 +45,20 @@
     opacity: 0;
     width: 0;
     height: 0;
+    position: absolute;
+    left: -5000px;
     
   }
+
+  .left-home {
+    /* margin: 0 25%; */
+    flex-grow: unset;
+    position: fixed;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
   .left-home .heading-text {
     font-size: 1.75em;
   }

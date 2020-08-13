@@ -6,18 +6,18 @@ import logo from '../Balanced.png'
 import Circle from './circle'
 
 export default class Home extends Component{
-  state = {
-    signIn: true
-  }
+  // state = {
+  //   signIn: true
+  // }
 
   whichUserForm = () => {
-    return this.state.signIn ? <SignIn regClick={()=>this.goToNewUserForm()}/> : <SignUp/>
+    return !this.props.newUser ? <SignIn regClick={()=>this.goToNewUserForm()}/> : <SignUp/>
   }
 
-  goToNewUserForm = () => {
-    const {signIn} = this.state
-    this.setState({signIn:!signIn})
-  }
+  // goToNewUserForm = () => {
+  //   const {signIn} = this.state
+  //   this.setState({signIn:!signIn})
+  // }
 
   render(){
     return(
