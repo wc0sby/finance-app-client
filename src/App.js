@@ -1,5 +1,5 @@
 import React from 'react';
-import {Switch, BrowserRouter as Router, Route} from 'react-router-dom'
+import {Switch, BrowserRouter as Router, Route, Link} from 'react-router-dom'
 import './App.css';
 
 import Nav from './components/nav'
@@ -22,7 +22,10 @@ export default function App() {
             <Home/>
           </Route>
           <Route path="*">
-            Sorry - invalid link
+            <div>
+              <h3>Sorry - invalid link</h3>
+              <Link to="/">Return Home?</Link>
+            </div>
           </Route>
         </Switch>
       </div>

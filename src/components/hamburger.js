@@ -1,8 +1,6 @@
-import { render } from "@testing-library/react"
-
-import React, {Component} from 'react'
+import React from 'react'
 export const hamburger = () => {
-  // render(){
+
     return(
       <div className='burger'>
         <div className='burger-1'></div>
@@ -10,7 +8,7 @@ export const hamburger = () => {
         <div className='burger-3'></div>
       </div>
     )
-  // }
+
 }
 
 export default hamburger
