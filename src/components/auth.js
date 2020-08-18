@@ -5,6 +5,7 @@ import SignUp from './signup'
 import logo from '../Balanced.png'
 import Circle from './circle'
 
+
 export default class Home extends Component{
   // state = {
   //   signIn: true
@@ -92,6 +93,7 @@ export default class Home extends Component{
       
     )
   }
+  
 }
 
 const styles = {
