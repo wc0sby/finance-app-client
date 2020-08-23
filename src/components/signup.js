@@ -26,7 +26,7 @@ export default class SignUp extends Component{
     // return !password ? this.setState({error:'Password'}) : null
     // don't post if password is blank
     if (this.state.error === ''){
-      const url = 'http://192.168.86.25:3001/users'
+      const url = 'http://localhost:3001/users'
       const body = {
         firstName,
         lastName,

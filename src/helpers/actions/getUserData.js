@@ -6,7 +6,7 @@ export const decodeToken = (token) => {
 }
 
 export const getUserData = (id, option) => {
-  const url = `http://192.168.86.25:3001/users/${id}`
+  const url = `http://localhost:3001/users/${id}`
   return fetch(url)
   .then(res=>res.json())
   .then(

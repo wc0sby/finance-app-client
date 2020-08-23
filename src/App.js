@@ -11,35 +11,16 @@ import Table from './components/table'
 import {getUserData, decodeToken} from './helpers/actions/getUserData'
 
 export default class App extends Component{
-  state = {
-    userInfo: {
-      _id:'',
-      name:'',
-      email:'',
-      token:''
-    },
-  }
-
-  async componentDidMount(){
-    const token = document.cookie
-    if (document.cookie){
-      const tokenData = decodeToken(token)
-      let categories = await getUserData(tokenData._id, 'categories')
-      // Need to think more into storing the token in state since it's in cookies...seems redundant.
-      this.setState({userInfo:{...tokenData, token, categories:categories}})
-    }
-  }
-
   render(){
     return (
       <Router>
         <div className={classNames}>
-          <Nav auth={this.state.token}/>
+          <Nav/>
           <Switch>
             {/* PrivateRoutes are only accessible by authenticated users */}
             {/* PublicRoutes are accessible to all and can be restricted as needed*/}
             {/* Credit: https://medium.com/@thanhbinh.tran93/private-route-public-route-and-restricted-route-with-react-router-d50b27c15f5e */}
-            <PrivateRoute component={Table} exact path="/dashboard" user={this.state.userInfo}/>
+            <PrivateRoute component={Table} exact path="/dashboard"/>
             <PublicRoute component={Auth} exact path="/signin" newUser={false} restricted={true}/>
             <PublicRoute component={Auth} exact path="/register" newUser={true} restricted={true}/>
             <PublicRoute component={Home} exact path="/" restricted={false}/>
