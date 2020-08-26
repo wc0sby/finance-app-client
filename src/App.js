@@ -8,7 +8,6 @@ import Auth from './components/auth'
 import PrivateRoute from './helpers/routes/privateRouter'
 import PublicRoute from './helpers/routes/publicRouter'
 import Table from './components/table'
-import {getUserData, decodeToken} from './helpers/actions/getUserData'
 
 export default class App extends Component{
   render(){

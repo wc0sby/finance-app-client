@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import {fetchUserData} from '../redux/fetch/getUserDataFetch'
-import { getProductsError, getUserData, getUserDataPending } from '../redux/reducers/UserDataReducer'
-import { bindActionCreators } from 'redux'
+import {createEntry} from '../redux/actions/transactionActions'
 
 import {decodeToken} from '../helpers/actions/getUserData'
 
@@ -14,13 +13,12 @@ class Table extends Component{
     if (document.cookie){
       const tokenData = decodeToken(token)
     fetchUserData(tokenData._id, 'categories')
-    }
+  }
+  this.props.updateEntries({id:'112',itemName:'test'})
   }
 
   getCategories(status, userData){
-    // const {user} = this.props
     if (!status && userData['categories']){
-      console.log(userData['categories'])
       const filterArr = userData['categories'].filter(i=>i.isActive)
       return <ul>
         {
@@ -55,11 +53,15 @@ class Table extends Component{
 const mapStateToProps = state => ({
   items: state.userData.items,
   loading: state.userData.loading,
-  error: state.userData.error
+  error: state.userData.error,
+  entries: state.transactionData
 })
 
-const mapDispatchToProps = dispatch => bindActionCreators({
-  fetchUserData
-}, dispatch)
+const mapDispatchToProps = dispatch => {
+  return{
+    fetchUserData: (token, type)=>dispatch(fetchUserData(token, type)),
+    updateEntries: (data)=>dispatch(createEntry(data))
+  }
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Table)
