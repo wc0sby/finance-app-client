@@ -5,7 +5,7 @@ import {
 } from '../actions/getUserDataAction'
 
 const initialState = {
-  items:{},
+  data:{},
   loading: false,
   error: null
 }
@@ -23,20 +23,21 @@ export const userDataReducer = (state = initialState, action) => {
         ...state,
         loading: false,
         error: null,
-        items: action.payload.data
+        data: action.payload.data,
+
       } 
     case FETCH_USERDATA_FAILURE:
       return {
         ...state,
         loading: false,
         error: action.payload.error,
-        items: []
+        data: []
       }
     default: 
       return state
   }
 }
 
-export const getUserData = state => state.userData.items
+export const getUserData = state => state.userData.data
 export const getUserDataPending = state => state.userData.loading
 export const getProductsError = state => state.userData.error

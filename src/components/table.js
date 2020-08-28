@@ -30,7 +30,7 @@ class Table extends Component{
     }
   }
   render(){
-    const {error, loading, items} = this.props
+    const {error, loading, data} = this.props
 
     if (error) {
       return <div>Error: {error.message}</div>
@@ -42,16 +42,16 @@ class Table extends Component{
 
     return(
       <div>
-        <h3>{`Welcome ${items.firstName}!`}</h3>
+        <h3>{`Welcome ${data.firstName}!`}</h3>
         <h5>Below are your categories!</h5>
-        {this.getCategories(loading, items)}
+        {this.getCategories(loading, data)}
       </div>
     )
   }
 }
 
 const mapStateToProps = state => ({
-  items: state.userData.items,
+  data: state.userData.data,
   loading: state.userData.loading,
   error: state.userData.error,
   entries: state.transactionData
