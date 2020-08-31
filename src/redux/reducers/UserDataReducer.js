@@ -5,9 +5,11 @@ import {
 } from '../actions/getUserDataAction'
 
 const initialState = {
-  data:{},
+  userData:[],
   loading: false,
-  error: null
+  error: null,
+  entries: [],
+  categories: []
 }
 
 export const userDataReducer = (state = initialState, action) => {
@@ -19,11 +21,14 @@ export const userDataReducer = (state = initialState, action) => {
         error: null
       }
     case FETCH_USERDATA_SUCCESS:
+      const {entries, categories, ...withOutEntries} = action.payload.data
       return {
         ...state,
         loading: false,
         error: null,
-        data: action.payload.data,
+        userData: withOutEntries,
+        entries: entries,
+        categories: categories
 
       } 
     case FETCH_USERDATA_FAILURE:
@@ -31,13 +36,13 @@ export const userDataReducer = (state = initialState, action) => {
         ...state,
         loading: false,
         error: action.payload.error,
-        data: []
+        userData: []
       }
     default: 
       return state
   }
 }
 
-export const getUserData = state => state.userData.data
-export const getUserDataPending = state => state.userData.loading
-export const getProductsError = state => state.userData.error
+// export const getUserData = state => state.userData.data
+// export const getUserDataPending = state => state.userData.loading
+// export const getProductsError = state => state.userData.error
