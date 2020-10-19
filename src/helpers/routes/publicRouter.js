@@ -7,7 +7,7 @@ const PublicRoute=({component:Component, restricted, ...rest})=>{
       <Route
         {...rest}
         render={props=>(
-          document.cookie && restricted
+          document.cookie !== 'null' && !restricted
             ? <Redirect to="/dashboard"/>
             : <Component {...rest} />
         )}

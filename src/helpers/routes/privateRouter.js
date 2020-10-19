@@ -7,7 +7,7 @@ const PrivateRoute=({component:Component, ...rest})=>{
       <Route
         {...rest}
         render={props=>(
-          document.cookie
+          document.cookie !== 'null'
             ? <Component {...rest} />
             : <Redirect to="/signin"/>
         )}

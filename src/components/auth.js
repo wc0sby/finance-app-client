@@ -4,9 +4,10 @@ import SignIn from './signIn'
 import SignUp from './signup'
 import logo from '../Balanced.png'
 import Circle from './circle'
+import { connect } from 'react-redux'
 
 
-export default class Home extends Component{
+class Auth extends Component{
   // state = {
   //   signIn: true
   // }
@@ -88,12 +89,10 @@ export default class Home extends Component{
             hPosition={300}
           />
         </section>
-
       </div>
       
     )
   }
-  
 }
 
 const styles = {
@@ -118,3 +117,16 @@ const styles = {
   bubbleColor: 'rgba(33,250,47,0.14)'
   
 }
+
+const MSP = state => {
+  const {error, cookie, loading} = state.auth
+  return (
+    {
+      error,
+      cookie,
+      loading
+    }
+  )
+}
+
+export default connect(MSP)(Auth)

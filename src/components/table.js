@@ -10,12 +10,12 @@ class Table extends Component{
   componentDidMount() {
     const {fetchUserData} = this.props
     const token = document.cookie
-    if (document.cookie){
+    if (token !== 'null'){
       const tokenData = decodeToken(token)
-    fetchUserData(tokenData._id, 'categories')
+      fetchUserData(tokenData._id, 'categories')
+      this.props.updateEntries({id:'112',itemName:'test'})
   }
-  this.props.updateEntries({id:'112',itemName:'test'})
-  }
+}
 
   getCategories(status, userData, strName){
     if (!status && userData){
