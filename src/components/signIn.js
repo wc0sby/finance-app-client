@@ -34,7 +34,7 @@ class SignIn extends Component{
 
   authToContinue(){
     const { email, password } = this.state.form 
-    if(this.props.cookie === "null" || !this.props.cookie){
+    if(this.props.cookie === null || !this.props.cookie){
       return(
         <div className="auth-form">
           <h1 className="accent-text orange-text">Sign In</h1>

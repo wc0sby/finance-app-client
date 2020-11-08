@@ -34,7 +34,7 @@ export const fetchAuth = (email, password, error) => {
       .then(res=>res.json())
       .then(
         (data)=>{
-          document.cookie = data
+          document.cookie = `auth=${data}`
           dispatch(fetchAuthSuccess(data))
         },
         (reject)=>dispatch(fetchAuthFailure(reject))

@@ -4,6 +4,19 @@ const initialState = {
   loading:false,
 }
 
+const getCookie=(name)=>{
+  return document.cookie.split(';').some(i=> i.trim().startsWith(`${name}=`))
+}
+
+const deleteCookie=(name, path, domain)=>{
+  console.log('deleting', getCookie(name))
+  return getCookie(name) 
+    ? (
+      document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:01 GMT`
+    )
+    : ''
+}
+
 export const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'FETCH_AUTH':
@@ -26,6 +39,7 @@ export const authReducer = (state = initialState, action) => {
         error: action.payload
       }
     case 'SIGNOUTACTION':
+      deleteCookie('auth')
       return {
         ...state,
         cookie: null

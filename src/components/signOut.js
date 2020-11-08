@@ -8,7 +8,6 @@ class SignOut extends Component{
     this.props.signOutAction()
   }
   render(){
-    document.cookie = null
     return(
       <div>
         <Redirect to="/"/>

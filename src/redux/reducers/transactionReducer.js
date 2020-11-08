@@ -7,6 +7,7 @@ export const getEntryReducer = (state={}, action) => {
       return action.payload
       
     case CREATE_NEW_TRANSACTION:
+      console.log(action.payload.data)
       return {
         ...state,
         data: action.payload.data

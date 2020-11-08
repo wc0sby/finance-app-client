@@ -2,15 +2,17 @@ import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import {fetchUserData} from '../redux/fetch/getUserDataFetch'
 import {createEntry} from '../redux/actions/transactionActions'
-
 import {decodeToken} from '../helpers/actions/getUserData'
+
+import Entry from './form'
+import '../styles/dashboard.css'
 
 class Table extends Component{
 
   componentDidMount() {
     const {fetchUserData} = this.props
     const token = document.cookie
-    if (token !== 'null'){
+    if (token !== 'null' && token.length !== 0){
       const tokenData = decodeToken(token)
       fetchUserData(tokenData._id, 'categories')
       this.props.updateEntries({id:'112',itemName:'test'})
@@ -41,13 +43,18 @@ class Table extends Component{
     }
 
     return(
-      <div>
-        <h3>{`Welcome ${userData.firstName}!`}</h3>
-        <h5>Below are your categories!</h5>
-        {/* Remove when the table is built. Render list of categories...just to test */}
-        {this.getCategories(loading, categories, 'category')}
-        <h5>These are some entries</h5>
-        {this.getCategories(loading, entries, 'name')}
+      <div className='dashboard-layout'>
+        <div className='dashboard-list'>
+          <h3>{`Welcome ${userData.firstName}!`}</h3>
+          <h5>Below are your categories!</h5>
+          {/* Remove when the table is built. Render list of categories...just to test */}
+          {this.getCategories(loading, categories, 'category')}
+          <h5>These are some entries</h5>
+          {this.getCategories(loading, entries, 'name')}
+        </div>
+        <div className='dashboard-form'>
+          <Entry userid={userData._id}/>
+        </div>
       </div>
     )
   }
