@@ -2,10 +2,12 @@ import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import {fetchUserData} from '../redux/fetch/getUserDataFetch'
 import {createEntry} from '../redux/actions/transactionActions'
+import {deleteCategoryData} from '../redux/fetch/deleteCategoryFetch'
 import {decodeToken} from '../helpers/actions/getUserData'
 
 import Entry from './form'
 import '../styles/dashboard.css'
+import Delete from './deleteButton'
 
 class Table extends Component{
 
@@ -14,18 +16,28 @@ class Table extends Component{
     const token = document.cookie
     if (token !== 'null' && token.length !== 0){
       const tokenData = decodeToken(token)
-      fetchUserData(tokenData._id, 'categories')
-      this.props.updateEntries({id:'112',itemName:'test'})
+      fetchUserData(tokenData._id)
   }
 }
+
+  handleDeleteClick(data){
+    const newData = data
+    newData.isActive = !newData.isActive
+    this.props.deleteEntries(this.props.userData._id, newData._id, newData)
+  }
 
   getCategories(status, userData, strName){
     if (!status && userData){
       const filterArr = userData.filter(i=>i.isActive)
       return <ul>
         {
-          filterArr.map((i,k)=>{
-            return <li key={k}>{i[strName]}</li> 
+          filterArr.map((i)=>{
+            return (
+              <div key={i._id}>
+                <span><Delete itemKey={i} handleOnClick={(e,data)=>this.handleDeleteClick(data)}/> </span>
+                <span>{i[strName]} </span>
+              </div> 
+            )
           })
       }
       </ul> 
@@ -77,7 +89,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return{
     fetchUserData: (token, type)=>dispatch(fetchUserData(token, type)),
-    updateEntries: (data)=>dispatch(createEntry(data))
+    updateEntries: (data)=>dispatch(createEntry(data)),
+    deleteEntries: (id, catId, data)=>dispatch(deleteCategoryData(id, catId, data))
   }
 }
 

@@ -10,7 +10,7 @@ export const decodeToken = (token) => {
   return information
 }
 
-export const fetchUserData = (id, option) => {
+export const fetchUserData = (id) => {
   const url = `http://localhost:3001/users/${id}`
   return dispatch => {
     //initiate fetchUserDataBegin Action

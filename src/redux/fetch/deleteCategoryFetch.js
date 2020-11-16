@@ -6,7 +6,7 @@ import {
 
 const fetchHeaderBuilder = (obj) => {
   let headersForFetch = {
-    method: 'post',
+    method: 'put',
     headers: {
       'Content-Type':'application/json',
       'auth-token': document.cookie
@@ -16,13 +16,14 @@ const fetchHeaderBuilder = (obj) => {
   return headersForFetch
 }
 
-export const postCategoryData = (id, postData) => {
-  const url = `http://localhost:3001/categories/${id}`
+export const deleteCategoryData = (id, catId, deleteData) => {
+  console.log(id, catId, deleteData)
+  const url = `http://localhost:3001/categories/${id}/${catId}`
   return dispatch => {
     //initiate fetchUserDataBegin Action
     dispatch(fetchCategoryDataBegin())
     //get headers
-    const fetchHeader = fetchHeaderBuilder(postData)
+    const fetchHeader = fetchHeaderBuilder(deleteData)
     //try to fetch...
     fetch(url, fetchHeader)
     .then(res=>res.json())

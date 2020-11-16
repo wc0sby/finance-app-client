@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
-import { createEntry } from '../redux/actions/transactionActions'
+import { postCategoryData } from '../redux/fetch/postCategoryFetch'
 import '../styles/dashboard.css'
 
 // import { formUpdate } from '../helpers/functionFactory'
@@ -8,7 +8,8 @@ import '../styles/dashboard.css'
 class EntryForm extends Component{
   state = {
     formData:{
-      category: ''
+      category: '',
+      isActive: true
     }
   }
 
@@ -18,17 +19,21 @@ class EntryForm extends Component{
     this.setState({[stateName]: formData})
   }
 
+  handleSubmit(e){
+    e.preventDefault()
+    return this.state.formData.category ? this.props.updateEntries(this.props.userData._id, this.state.formData) : null
+  }
+
   render(){
-    console.log(this.props)
     return(
       <div>
         <form >
           <label forhtml='cat_name'>Category Name</label>
           <input type="text" id='cat_name' name='category' placeholder='new category' onChange={(e)=>this.formUpdate(e, 'category', 'formData')} value={this.state.formData.category}/>
-
-          <div className='dashboard-button' onClick={()=>this.props.updateEntries(this.state.formData)}>Add Category</div> 
-
         </form>
+
+          <div className='dashboard-button' onClick={(e)=>this.handleSubmit(e)}>Add Category</div> 
+
       </div>
     )
   }
@@ -36,14 +41,16 @@ class EntryForm extends Component{
 
 const MSP = state => {
   const {formValue} = state.auth
+  const {userData} = state.userData
   return ({
-    formValue
+    formValue,
+    userData
   })
 }
 
 const MDP = dispatch => {
   return {
-    updateEntries: (data)=>dispatch(createEntry(data))
+    updateEntries: (id, data)=>dispatch(postCategoryData(id, data))
   }
 }
 

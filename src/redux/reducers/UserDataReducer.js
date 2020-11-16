@@ -1,8 +1,14 @@
 import {
   FETCH_USERDATA_BEGIN,
   FETCH_USERDATA_SUCCESS,
-  FETCH_USERDATA_FAILURE
+  FETCH_USERDATA_FAILURE,
 } from '../actions/getUserDataAction'
+
+import {
+  FETCH_CATEGORYDATA_BEGIN,
+  FETCH_CATEGORYDATA_SUCCESS,
+  FETCH_CATEGORYDATA_FAILURE,
+} from '../actions/postCategoryAction'
 
 const initialState = {
   userData:[],
@@ -15,12 +21,14 @@ const initialState = {
 export const userDataReducer = (state = initialState, action) => {
   switch (action.type){
     case FETCH_USERDATA_BEGIN:
+    case FETCH_CATEGORYDATA_BEGIN:
       return {
         ...state,
         loading: true,
         error: null
       }
     case FETCH_USERDATA_SUCCESS:
+    case FETCH_CATEGORYDATA_SUCCESS:
       const {entries, categories, ...withOutEntries} = action.payload.data
       return {
         ...state,
@@ -32,6 +40,7 @@ export const userDataReducer = (state = initialState, action) => {
 
       } 
     case FETCH_USERDATA_FAILURE:
+    case FETCH_CATEGORYDATA_FAILURE:
       return {
         ...state,
         loading: false,
