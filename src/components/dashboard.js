@@ -4,21 +4,20 @@ import {fetchUserData} from '../redux/fetch/getUserDataFetch'
 import {createEntry} from '../redux/actions/transactionActions'
 import {deleteCategoryData} from '../redux/fetch/deleteCategoryFetch'
 import {decodeToken} from '../helpers/actions/getUserData'
-
-import Entry from './form'
-import '../styles/dashboard.css'
 import Delete from './deleteButton'
+import DenseTable from './material-table'
 
-class Table extends Component{
+import '../styles/dashboard.css'
 
+class Dashboard extends Component{
   componentDidMount() {
     const {fetchUserData} = this.props
     const token = document.cookie
     if (token !== 'null' && token.length !== 0){
       const tokenData = decodeToken(token)
       fetchUserData(tokenData._id)
+    }
   }
-}
 
   handleDeleteClick(data, path){
     const newData = data
@@ -26,26 +25,33 @@ class Table extends Component{
     this.props.deleteEntries(this.props.userData._id, newData._id, newData, path)
   }
 
+  getHeaders(){
+    return (
+    // <div style={{'display':'grid'}}>
+      <div style={{'gridColumn':'1 / span 4', 'display':'flex', 'justifyContent':'space-around'}}>
+        <div></div>
+        <div>Name</div>
+        <div>Budget Amt</div>
+        <div>Actual Amt</div>
+        <div>Variance</div>
+        <div>Month</div>
+        <div>Year</div>
+      </div> 
+    // </div>
+    )
+  }
+
   getCategories(status, userData, strName, path){
     if (!status && userData){
       const filterArr = userData.filter(i=>i.isActive)
-      return <ul>
-        {
-          filterArr.map((i)=>{
-            return (
-              <div key={i._id}>
-                <span><Delete itemKey={i} handleOnClick={(e,data)=>this.handleDeleteClick(data, path)}/> </span>
-                <span>{i[strName]} </span>
-              </div> 
-            )
-          })
-      }
-      </ul> 
+      return <div style={{'display':'grid'}}>
+        <DenseTable data={filterArr}/>
+      </div> 
     }
-  }
+  } 
+
   render(){
     const {error, loading, userData, categories, entries} = this.props
-
     if (error) {
       return <div>Error: {error.message}</div>
     }
@@ -53,19 +59,13 @@ class Table extends Component{
     if (loading) {
       return <div>Loading...</div>
     }
-
     return(
-      <div className='dashboard-layout'>
-        <div className='dashboard-list'>
-          <h3>{`Welcome ${userData.firstName}!`}</h3>
-          <h5>Below are your categories!</h5>
-          {/* Remove when the table is built. Render list of categories...just to test */}
-          {this.getCategories(loading, categories, 'category', 'categories')}
-          <h5>These are some entries</h5>
-          {this.getCategories(loading, entries, 'name', 'entries')}
-        </div>
-        <div className='dashboard-form'>
-          <Entry userid={userData._id}/>
+      <div className={'dashboard-grid'}>
+        <div className='item-c'>hi</div>
+        <div className='item-c2'>hi</div>
+        <div className='item-c3'>
+        {/* <div className='table-header'>{this.getHeaders()}</div> */}
+        <div className='table-main'>{this.getCategories(loading, entries, 'name', 'entries') }</div>
         </div>
       </div>
     )
@@ -94,4 +94,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Table)
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard)

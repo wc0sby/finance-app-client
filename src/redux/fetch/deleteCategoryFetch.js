@@ -16,9 +16,9 @@ const fetchHeaderBuilder = (obj) => {
   return headersForFetch
 }
 
-export const deleteCategoryData = (id, catId, deleteData) => {
+export const deleteCategoryData = (id, catId, deleteData, path) => {
   console.log(id, catId, deleteData)
-  const url = `http://localhost:3001/categories/${id}/${catId}`
+  const url = `http://localhost:3001/${path}/${id}/${catId}`
   return dispatch => {
     //initiate fetchUserDataBegin Action
     dispatch(fetchCategoryDataBegin())
@@ -36,7 +36,6 @@ export const deleteCategoryData = (id, catId, deleteData) => {
         }
         //If we are here, we have success
         //initiate fetchUserDataSuccess action
-        console.log(objWithoutPassword)
         dispatch(fetchCategoryDataSuccess(objWithoutPassword))
         return objWithoutPassword
       })
